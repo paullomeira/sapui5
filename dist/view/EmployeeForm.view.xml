@@ -1,0 +1,178 @@
+<mvc:View
+	controllerName="sapui5.template.controller.EmployeeForm"
+	xmlns:mvc="sap.ui.core.mvc"
+	displayBlock="true"
+	xmlns="sap.m"
+	xmlns:f="sap.f"
+	xmlns:form="sap.ui.layout.form"
+	xmlns:core="sap.ui.core">
+
+	<f:DynamicPage id="dynamicPageId" headerExpanded="true" class="employeeFormPage">
+		<!-- Header -->
+		<f:title>
+			<f:DynamicPageTitle>
+				<f:heading>
+					<Title text="{view>/title}" />
+				</f:heading>
+				<f:actions>
+					<Button
+						text="{i18n>button.save}"
+						type="Emphasized"
+						press="onSave"
+						enabled="{view>/saveEnabled}" />
+					<Button
+						text="{i18n>button.cancel}"
+						press="onCancel" />
+				</f:actions>
+			</f:DynamicPageTitle>
+		</f:title>
+
+		<!-- Content -->
+		<f:content>
+			<VBox class="employeeForm">
+				<MessageStrip
+					id="messageStrip"
+					visible="false"
+					class="customMarginBottom" />
+
+				<form:SimpleForm
+					id="employeeForm"
+					editable="true"
+					layout="ResponsiveGridLayout"
+					title="{i18n>pageTitle.employeeForm}"
+					class="formSection"
+					labelSpanXL="3"
+					labelSpanL="3"
+					labelSpanM="3"
+					labelSpanS="12"
+					adjustLabelSpan="false"
+					emptySpanXL="4"
+					emptySpanL="4"
+					emptySpanM="4"
+					emptySpanS="0"
+					columnsXL="1"
+					columnsL="1"
+					columnsM="1"
+					singleContainerFullSize="false">
+
+					<form:content>
+						<!-- Personal Information Section -->
+						<core:Title xmlns:core="sap.ui.core" text="{i18n>section.personalInfo}" />
+
+						<Label text="{i18n>label.firstName}" required="true" />
+						<Input
+							id="firstNameInput"
+							value="{employee>/firstName}"
+							valueState="{view>/firstNameState}"
+							valueStateText="{view>/firstNameStateText}"
+							liveChange="onFieldChange"
+							placeholder="{i18n>placeholder.firstName}" />
+
+						<Label text="{i18n>label.lastName}" required="true" />
+						<Input
+							id="lastNameInput"
+							value="{employee>/lastName}"
+							valueState="{view>/lastNameState}"
+							valueStateText="{view>/lastNameStateText}"
+							liveChange="onFieldChange"
+							placeholder="{i18n>placeholder.lastName}" />
+
+						<Label text="{i18n>label.email}" required="true" />
+						<Input
+							id="emailInput"
+							value="{employee>/email}"
+							valueState="{view>/emailState}"
+							valueStateText="{view>/emailStateText}"
+							liveChange="onFieldChange"
+							type="Email"
+							placeholder="{i18n>placeholder.email}" />
+
+						<Label text="{i18n>label.phone}" />
+						<Input
+							id="phoneInput"
+							value="{employee>/phone}"
+							valueState="{view>/phoneState}"
+							valueStateText="{view>/phoneStateText}"
+							liveChange="onFieldChange"
+							placeholder="{i18n>placeholder.phone}" />
+
+						<Label text="{i18n>label.address}" />
+						<TextArea
+							id="addressInput"
+							value="{employee>/address}"
+							rows="3"
+							placeholder="{i18n>placeholder.address}" />
+
+						<!-- Employment Information Section -->
+						<core:Title xmlns:core="sap.ui.core" text="{i18n>section.employmentInfo}" />
+
+						<Label text="{i18n>label.department}" required="true" />
+						<ComboBox
+							id="departmentComboBox"
+							selectedKey="{employee>/department}"
+							valueState="{view>/departmentState}"
+							valueStateText="{view>/departmentStateText}"
+							selectionChange="onFieldChange"
+							items="{/departments}">
+							<core:Item key="{key}" text="{text}" />
+						</ComboBox>
+
+						<Label text="{i18n>label.position}" required="true" />
+						<ComboBox
+							id="positionComboBox"
+							selectedKey="{employee>/position}"
+							valueState="{view>/positionState}"
+							valueStateText="{view>/positionStateText}"
+							selectionChange="onFieldChange"
+							items="{/positions}">
+							<core:Item key="{key}" text="{text}" />
+						</ComboBox>
+
+						<Label text="{i18n>label.hireDate}" required="true" />
+						<DatePicker
+							id="hireDatePicker"
+							value="{
+								path: 'employee>/hireDate',
+								type: 'sap.ui.model.type.Date',
+								formatOptions: {
+									pattern: 'yyyy-MM-dd'
+								}
+							}"
+							valueState="{view>/hireDateState}"
+							valueStateText="{view>/hireDateStateText}"
+							change="onFieldChange"
+							placeholder="{i18n>placeholder.hireDate}" />
+
+						<Label text="{i18n>label.salary}" required="true" />
+						<Input
+							id="salaryInput"
+							value="{
+								path: 'employee>/salary',
+								type: 'sap.ui.model.type.Currency',
+								formatOptions: {
+									showMeasure: false
+								}
+							}"
+							valueState="{view>/salaryState}"
+							valueStateText="{view>/salaryStateText}"
+							liveChange="onFieldChange"
+							placeholder="{i18n>placeholder.salary}" />
+
+						<Label text="{i18n>label.status}" required="true" />
+						<ComboBox
+							id="statusComboBox"
+							selectedKey="{employee>/status}"
+							valueState="{view>/statusState}"
+							valueStateText="{view>/statusStateText}"
+							selectionChange="onFieldChange"
+							items="{/statusOptions}">
+							<core:Item key="{key}" text="{text}" />
+						</ComboBox>
+
+					</form:content>
+				</form:SimpleForm>
+			</VBox>
+		</f:content>
+	</f:DynamicPage>
+
+</mvc:View>

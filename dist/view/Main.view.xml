@@ -1,0 +1,112 @@
+<mvc:View
+	controllerName="sapui5.template.controller.Main"
+	xmlns:mvc="sap.ui.core.mvc"
+	xmlns:core="sap.ui.core"
+	xmlns="sap.m">
+	<Page id="mainPage" title="{i18n>main.title}" showNavButton="false" class="mainPageContainer">
+		<content>
+			<VBox class="customPaddingMedium">
+				<!-- Header Section with Statistics -->
+				<div class="mainPageHeader customMarginBottom">
+					<Title text="{i18n>main.title}" class="sapMTitle"/>
+					<Text text="{i18n>main.subtitle}" class="sapMText"/>
+				</div>
+				<Panel headerText="{i18n>main.dashboard}" class="customMarginBottom">
+					<content>
+						<HBox class="sapUiMediumMargin">
+							<VBox class="sapUiMediumMarginEnd">
+								<ObjectNumber
+									number="{mainView>/statistics/totalEmployees}"
+									unit="{i18n>stats.totalEmployees}"
+									emphasized="true"
+									state="Success"/>
+							</VBox>
+							<VBox class="sapUiMediumMarginEnd">
+								<ObjectNumber
+									number="{mainView>/statistics/activeDepartments}"
+									unit="{i18n>stats.activeDepartments}"
+									emphasized="true"
+									state="Information"/>
+							</VBox>
+							<VBox>
+								<ObjectNumber
+									number="{mainView>/statistics/newHires}"
+									unit="{i18n>stats.newHires}"
+									emphasized="true"
+									state="Warning"/>
+							</VBox>
+						</HBox>
+					</content>
+				</Panel>
+
+				<!-- Language Switcher (for testing i18n) -->
+				<Panel headerText="Language / Idioma" class="sapUiResponsiveMargin">
+					<content>
+						<HBox class="sapUiMediumMargin">
+							<Button
+								text="English"
+								press="switchLanguage('en')"
+								class="sapUiTinyMarginEnd"/>
+							<Button
+								text="Português"
+								press="switchLanguage('pt')"/>
+						</HBox>
+					</content>
+				</Panel>
+
+				<!-- Navigation Section -->
+				<Panel headerText="{i18n>main.quickActions}" class="customMarginBottom">
+					<content>
+						<TileContainer id="tileContainer" class="navigationTiles customPaddingMedium">
+							<StandardTile
+								id="employeeListTile"
+								icon="sap-icon://employee"
+								title="{i18n>tile.employeeList.title}"
+								info="{i18n>tile.employeeList.info}"
+								press="onNavigateToEmployeeList"
+								class="sapUiTinyMargin"/>
+							<StandardTile
+								id="addEmployeeTile"
+								icon="sap-icon://add-employee"
+								title="{i18n>tile.addEmployee.title}"
+								info="{i18n>tile.addEmployee.info}"
+								press="onNavigateToAddEmployee"
+								class="sapUiTinyMargin"/>
+							<StandardTile
+								id="departmentsTile"
+								icon="sap-icon://org-chart"
+								title="{i18n>tile.departments.title}"
+								info="{i18n>tile.departments.info}"
+								press="onNavigateToDepartments"
+								class="sapUiTinyMargin"/>
+							<StandardTile
+								id="reportsTile"
+								icon="sap-icon://business-objects-experience"
+								title="{i18n>tile.reports.title}"
+								info="{i18n>tile.reports.info}"
+								press="onNavigateToReports"
+								class="sapUiTinyMargin"/>
+						</TileContainer>
+					</content>
+				</Panel>
+
+				<!-- Recent Activity Section -->
+				<Panel headerText="{i18n>main.recentActivity}" class="sapUiResponsiveMargin">
+					<content>
+						<List
+							id="recentActivityList"
+							items="{mainView>/recentActivity}"
+							noDataText="{i18n>activity.noData}">
+							<StandardListItem
+								title="{mainView>title}"
+								description="{mainView>description}"
+								info="{mainView>timestamp}"
+								icon="{mainView>icon}"
+								iconInset="false"/>
+						</List>
+					</content>
+				</Panel>
+			</VBox>
+		</content>
+	</Page>
+</mvc:View>

@@ -1,0 +1,480 @@
+/* Custom styles for SapUI5 Template Application */
+/* Compatible with SAP Horizon, Fiori 3, and Belize themes */
+
+/* ==========================================================================
+   EmployeeCard Custom Control Styles
+   ========================================================================== */
+
+.employeeCard {
+    margin: 0.5rem;
+    max-width: 400px;
+}
+
+.employeeCard .sapMCard {
+    border-radius: 0.5rem;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    transition: all 0.2s ease-in-out;
+    border: 1px solid var(--sapTile_BorderColor, #e5e5e5);
+}
+
+.employeeCard .sapMCard:hover {
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15);
+    cursor: pointer;
+    transform: translateY(-2px);
+}
+
+.employeeCard--compact {
+    max-width: 300px;
+}
+
+.employeeCard--compact .sapMCard {
+    min-height: 150px;
+}
+
+.employeeCard .sapMCardHeader {
+    padding: 1rem;
+    background-color: var(--sapTile_Background, #ffffff);
+}
+
+.employeeCard .sapMCardContent {
+    padding: 0 1rem 1rem 1rem;
+    background-color: var(--sapTile_Background, #ffffff);
+}
+
+/* Status styling with theme compatibility */
+.employeeCard .sapMObjectStatus {
+    font-weight: 600;
+}
+
+.employeeCard .sapMObjectStatus.sapMObjectStatusSuccess {
+    color: var(--sapPositiveColor, #107e3e);
+}
+
+.employeeCard .sapMObjectStatus.sapMObjectStatusError {
+    color: var(--sapNegativeColor, #bb0000);
+}
+
+.employeeCard .sapMObjectStatus.sapMObjectStatusWarning {
+    color: var(--sapCriticalColor, #e9730c);
+}
+
+/* Action buttons styling */
+.employeeCard .sapMBtn {
+    min-width: 80px;
+    margin: 0.25rem;
+}
+
+.employeeCard .sapMBtnEmphasized {
+    background-color: var(--sapButton_Emphasized_Background, #0070f2);
+    border-color: var(--sapButton_Emphasized_BorderColor, #0070f2);
+}
+
+.employeeCard .sapMBtnReject {
+    background-color: var(--sapButton_Reject_Background, #bb0000);
+    border-color: var(--sapButton_Reject_BorderColor, #bb0000);
+}
+
+/* ==========================================================================
+   Main Application Layout Styles
+   ========================================================================== */
+
+/* App shell customizations */
+.appShell {
+    background-color: var(--sapBackgroundColor, #fafafa);
+}
+
+/* Main page header styling */
+.mainPageHeader {
+    background: linear-gradient(135deg, 
+        var(--sapBrandColor, #0070f2) 0%, 
+        var(--sapHighlightColor, #0057d2) 100%);
+    color: var(--sapButton_Emphasized_TextColor, #ffffff);
+    padding: 2rem 1rem;
+    margin-bottom: 1rem;
+}
+
+.mainPageHeader .sapMTitle {
+    color: var(--sapButton_Emphasized_TextColor, #ffffff);
+    font-size: 2rem;
+    font-weight: 300;
+}
+
+.mainPageHeader .sapMText {
+    color: var(--sapButton_Emphasized_TextColor, #ffffff);
+    opacity: 0.9;
+}
+
+/* ==========================================================================
+   Employee List Styles
+   ========================================================================== */
+
+.employeeListContainer {
+    background-color: var(--sapBackgroundColor, #fafafa);
+    min-height: 100vh;
+}
+
+.employeeListHeader {
+    background-color: var(--sapObjectHeader_Background, #ffffff);
+    border-bottom: 1px solid var(--sapList_BorderColor, #e5e5e5);
+    padding: 1rem;
+}
+
+.employeeTable .sapMListTblRow:hover {
+    background-color: var(--sapList_Hover_Background, #f5f5f5);
+}
+
+.employeeTable .sapMListTblCell {
+    border-bottom: 1px solid var(--sapList_BorderColor, #e5e5e5);
+}
+
+/* Search field styling */
+.employeeSearchField {
+    max-width: 400px;
+    margin-bottom: 1rem;
+}
+
+.employeeSearchField .sapMInputBase {
+    border-radius: 0.5rem;
+}
+
+/* ==========================================================================
+   Employee Detail Styles
+   ========================================================================== */
+
+.employeeDetailPage {
+    background-color: var(--sapBackgroundColor, #fafafa);
+}
+
+.employeeDetailHeader {
+    background: linear-gradient(135deg, 
+        var(--sapObjectHeader_Background, #ffffff) 0%, 
+        var(--sapTile_Background, #f7f7f7) 100%);
+    border-bottom: 2px solid var(--sapBrandColor, #0070f2);
+}
+
+.employeeDetailContent {
+    padding: 2rem;
+    background-color: var(--sapBackgroundColor, #ffffff);
+    margin: 1rem;
+    border-radius: 0.5rem;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* ==========================================================================
+   Employee Form Styles
+   ========================================================================== */
+
+.employeeForm {
+    background-color: var(--sapBackgroundColor, #ffffff);
+    padding: 2rem;
+    margin: 1rem;
+    border-radius: 0.5rem;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.employeeForm .sapMLabel {
+    font-weight: 600;
+    color: var(--sapContent_LabelColor, #32363a);
+}
+
+.employeeForm .sapMInputBase {
+    border-radius: 0.25rem;
+    transition: border-color 0.2s ease-in-out;
+}
+
+.employeeForm .sapMInputBase:focus {
+    border-color: var(--sapField_Focus_BorderColor, #0070f2);
+    box-shadow: 0 0 0 2px rgba(0, 112, 242, 0.2);
+}
+
+.employeeForm .sapMInputBaseError {
+    border-color: var(--sapField_InvalidColor, #bb0000);
+    box-shadow: 0 0 0 2px rgba(187, 0, 0, 0.2);
+}
+
+/* Form section styling */
+.formSection {
+    margin-bottom: 2rem;
+    padding: 1.5rem;
+    background-color: var(--sapTile_Background, #ffffff);
+    border: 1px solid var(--sapTile_BorderColor, #e5e5e5);
+    border-radius: 0.5rem;
+}
+
+.formSectionTitle {
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: var(--sapContent_LabelColor, #32363a);
+    margin-bottom: 1rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 2px solid var(--sapBrandColor, #0070f2);
+}
+
+/* ==========================================================================
+   Dialog and Fragment Styles
+   ========================================================================== */
+
+.customDialog .sapMDialog {
+    border-radius: 0.5rem;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+}
+
+.customDialog .sapMDialogTitle {
+    background-color: var(--sapPageHeader_Background, #ffffff);
+    border-bottom: 1px solid var(--sapPageHeader_BorderColor, #e5e5e5);
+    font-weight: 600;
+}
+
+.confirmDialog .sapMDialog {
+    min-width: 400px;
+}
+
+.confirmDialog .sapMDialogContent {
+    padding: 2rem;
+    text-align: center;
+}
+
+/* ==========================================================================
+   Navigation and Menu Styles
+   ========================================================================== */
+
+.navigationTiles .sapMTile {
+    margin: 0.5rem;
+    border-radius: 0.5rem;
+    transition: all 0.2s ease-in-out;
+    border: 1px solid var(--sapTile_BorderColor, #e5e5e5);
+}
+
+.navigationTiles .sapMTile:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15);
+}
+
+.navigationTiles .sapMTileContent {
+    background: linear-gradient(135deg, 
+        var(--sapTile_Background, #ffffff) 0%, 
+        var(--sapTile_Background, #f7f7f7) 100%);
+}
+
+/* ==========================================================================
+   Utility Classes
+   ========================================================================== */
+
+/* Spacing utilities */
+.customMarginTop {
+    margin-top: 1rem;
+}
+
+.customMarginBottom {
+    margin-bottom: 1rem;
+}
+
+.customMarginSmall {
+    margin: 0.5rem;
+}
+
+.customMarginMedium {
+    margin: 1rem;
+}
+
+.customMarginLarge {
+    margin: 1.5rem;
+}
+
+.customPaddingSmall {
+    padding: 0.5rem;
+}
+
+.customPaddingMedium {
+    padding: 1rem;
+}
+
+.customPaddingLarge {
+    padding: 1.5rem;
+}
+
+/* Text utilities */
+.textCenter {
+    text-align: center;
+}
+
+.textRight {
+    text-align: right;
+}
+
+.textBold {
+    font-weight: 600;
+}
+
+.textMuted {
+    color: var(--sapContent_LabelColor, #6a6d70);
+    opacity: 0.7;
+}
+
+/* Status indicators */
+.statusActive {
+    color: var(--sapPositiveColor, #107e3e);
+    font-weight: 600;
+}
+
+.statusInactive {
+    color: var(--sapNegativeColor, #bb0000);
+    font-weight: 600;
+}
+
+.statusPending {
+    color: var(--sapCriticalColor, #e9730c);
+    font-weight: 600;
+}
+
+/* Loading and empty states */
+.loadingContainer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 200px;
+    background-color: var(--sapBackgroundColor, #fafafa);
+}
+
+.emptyState {
+    text-align: center;
+    padding: 3rem;
+    color: var(--sapContent_LabelColor, #6a6d70);
+}
+
+.emptyState .sapUiIcon {
+    font-size: 4rem;
+    color: var(--sapContent_IconColor, #6a6d70);
+    margin-bottom: 1rem;
+}
+
+/* ==========================================================================
+   Responsive Design
+   ========================================================================== */
+
+/* Mobile styles (< 600px) */
+@media (max-width: 600px) {
+    .employeeCard {
+        margin: 0.25rem;
+        max-width: 100%;
+    }
+    
+    .employeeCard .sapMCardHeader,
+    .employeeCard .sapMCardContent {
+        padding: 0.75rem;
+    }
+    
+    .mainPageHeader {
+        padding: 1rem;
+    }
+    
+    .mainPageHeader .sapMTitle {
+        font-size: 1.5rem;
+    }
+    
+    .employeeDetailContent,
+    .employeeForm {
+        margin: 0.5rem;
+        padding: 1rem;
+    }
+    
+    .formSection {
+        padding: 1rem;
+        margin-bottom: 1rem;
+    }
+    
+    .customMarginMedium {
+        margin: 0.5rem;
+    }
+    
+    .customPaddingMedium {
+        padding: 0.5rem;
+    }
+}
+
+/* Tablet styles (600px - 1024px) */
+@media (min-width: 600px) and (max-width: 1024px) {
+    .employeeCard {
+        max-width: 350px;
+    }
+    
+    .navigationTiles .sapMTile {
+        margin: 0.75rem;
+    }
+    
+    .employeeDetailContent,
+    .employeeForm {
+        margin: 1rem;
+        padding: 1.5rem;
+    }
+}
+
+/* Desktop styles (> 1024px) */
+@media (min-width: 1024px) {
+    .employeeCard {
+        max-width: 400px;
+    }
+    
+    .employeeDetailContent,
+    .employeeForm {
+        max-width: 1200px;
+        margin: 2rem auto;
+    }
+    
+    .mainPageHeader {
+        padding: 3rem 2rem;
+    }
+}
+
+/* ==========================================================================
+   Theme-specific Overrides
+   ========================================================================== */
+
+/* SAP Horizon theme specific styles */
+html[data-sap-ui-theme*="sap_horizon"] .employeeCard .sapMCard {
+    border-radius: 0.75rem;
+}
+
+html[data-sap-ui-theme*="sap_horizon"] .customDialog .sapMDialog {
+    border-radius: 0.75rem;
+}
+
+/* SAP Fiori 3 theme specific styles */
+html[data-sap-ui-theme*="sap_fiori_3"] .mainPageHeader {
+    background: linear-gradient(135deg, #0070f2 0%, #0057d2 100%);
+}
+
+/* SAP Belize theme specific styles */
+html[data-sap-ui-theme*="sap_belize"] .employeeCard .sapMCard {
+    border-radius: 0.25rem;
+}
+
+html[data-sap-ui-theme*="sap_belize"] .customDialog .sapMDialog {
+    border-radius: 0.25rem;
+}
+
+/* High contrast theme support */
+@media (prefers-contrast: high) {
+    .employeeCard .sapMCard {
+        border: 2px solid;
+    }
+    
+    .employeeCard .sapMCard:hover {
+        border-width: 3px;
+    }
+    
+    .mainPageHeader {
+        background: var(--sapBrandColor, #0070f2) !important;
+    }
+}
+
+/* Dark theme support */
+@media (prefers-color-scheme: dark) {
+    .employeeCard .sapMCard {
+        box-shadow: 0 2px 8px rgba(255, 255, 255, 0.1);
+    }
+    
+    .employeeCard .sapMCard:hover {
+        box-shadow: 0 4px 16px rgba(255, 255, 255, 0.15);
+    }
+}

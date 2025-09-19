@@ -1,0 +1,66 @@
+{
+  "name": "sapui5-builder-template",
+  "version": "1.0.0",
+  "description": "SapUI5 template application demonstrating best practices and reusable components",
+  "main": "webapp/index.html",
+  "scripts": {
+    "start": "ui5 serve --open",
+    "build": "ui5 build --dest dist",
+    "build:dev": "ui5 build --dest dist-dev",
+    "lint": "eslint webapp/",
+    "lint:fix": "eslint webapp/ --fix",
+    "lint:format": "npm run format && npm run lint",
+    "test": "echo 'Tests configured. Open webapp/test/unit/unitTests.qunit.html in browser to run unit tests.'",
+    "test:unit": "echo 'Open webapp/test/unit/unitTests.qunit.html in browser to run unit tests.'",
+    "test:integration": "echo 'Integration tests configured in webapp/test/integration/'",
+    "test:watch": "echo 'Open webapp/test/unit/unitTests.qunit.html in browser to run unit tests.'",
+    "format": "prettier --write webapp/**/*.{js,json}",
+    "format:check": "prettier --check webapp/**/*.{js,json}",
+    "precommit": "npm run lint:format"
+  },
+  "keywords": [
+    "sapui5",
+    "openui5",
+    "template",
+    "fiori",
+    "mvc",
+    "javascript"
+  ],
+  "author": "Developer",
+  "license": "MIT",
+  "devDependencies": {
+    "@ui5/builder": "^3.0.0",
+    "@ui5/cli": "^3.0.0",
+    "@ui5/fs": "^3.0.0",
+    "@ui5/logger": "^3.0.0",
+    "@ui5/server": "^3.0.0",
+    "@wdio/cli": "^8.0.0",
+    "@wdio/local-runner": "^8.0.0",
+    "@wdio/mocha-framework": "^8.0.0",
+    "@wdio/spec-reporter": "^8.0.0",
+    "chromedriver": "^119.0.0",
+    "eslint": "^8.0.0",
+    "eslint-config-prettier": "^10.1.8",
+    "eslint-plugin-ui5": "^0.1.0",
+    "karma": "^6.4.0",
+    "karma-chrome-launcher": "^3.1.0",
+    "karma-qunit": "^4.1.2",
+    "karma-ui5": "^3.0.0",
+    "prettier": "^3.0.0",
+    "qunit": "^2.19.0",
+    "sinon": "^15.0.0",
+    "wdio-chromedriver-service": "^8.0.0"
+  },
+  "ui5": {
+    "dependencies": [
+      "@openui5/sap.m",
+      "@openui5/sap.ui.core",
+      "@openui5/sap.f",
+      "@openui5/themelib_sap_horizon"
+    ]
+  },
+  "engines": {
+    "node": ">=16.0.0",
+    "npm": ">=8.0.0"
+  }
+}

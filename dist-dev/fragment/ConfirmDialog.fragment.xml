@@ -1,0 +1,107 @@
+<core:FragmentDefinition
+    xmlns="sap.m"
+    xmlns:core="sap.ui.core">
+    
+    <Dialog
+        id="confirmDialog"
+        title="{dialog>/title}"
+        type="Message"
+        state="{dialog>/state}"
+        contentWidth="400px"
+        resizable="false"
+        draggable="true"
+        afterClose="onConfirmDialogClose"
+        class="confirmDialog">
+        
+        <content>
+            <VBox class="customPaddingMedium">
+                
+                <!-- Icon based on dialog state -->
+                <HBox justifyContent="Center" class="sapUiMediumMarginBottom">
+                    <core:Icon
+                        src="{
+                            path: 'dialog>/state',
+                            formatter: '.formatDialogIcon'
+                        }"
+                        size="3rem"
+                        color="{
+                            path: 'dialog>/state',
+                            formatter: '.formatDialogIconColor'
+                        }" />
+                </HBox>
+                
+                <!-- Main message -->
+                <Text
+                    text="{dialog>/message}"
+                    class="sapUiMediumMarginBottom"
+                    textAlign="Center" />
+                
+                <!-- Additional details (optional) -->
+                <VBox visible="{= !!${dialog>/details} }">
+                    <Text
+                        text="{dialog>/details}"
+                        class="sapUiSmallMarginBottom"
+                        textAlign="Center" />
+                </VBox>
+                
+                <!-- Warning/Error specific content -->
+                <VBox visible="{= ${dialog>/state} === 'Warning' || ${dialog>/state} === 'Error' }">
+                    <MessageStrip
+                        text="{dialog>/warningText}"
+                        type="{dialog>/state}"
+                        visible="{= !!${dialog>/warningText} }"
+                        class="sapUiMediumMarginTop" />
+                </VBox>
+                
+                <!-- Input field for confirmation (optional) -->
+                <VBox visible="{dialog>/requiresInput}" class="sapUiMediumMarginTop">
+                    <Label 
+                        text="{dialog>/inputLabel}"
+                        class="sapUiSmallMarginBottom" />
+                    <Input
+                        id="confirmationInput"
+                        value="{dialog>/inputValue}"
+                        placeholder="{dialog>/inputPlaceholder}"
+                        valueState="{dialog>/inputValueState}"
+                        valueStateText="{dialog>/inputValueStateText}"
+                        liveChange="onConfirmationInputChange" />
+                </VBox>
+                
+                <!-- Checkbox for "Don't ask again" (optional) -->
+                <CheckBox
+                    id="dontAskAgainCheckBox"
+                    text="{i18n>dialog.dontAskAgain}"
+                    visible="{dialog>/showDontAskAgain}"
+                    selected="{dialog>/dontAskAgain}"
+                    class="sapUiMediumMarginTop" />
+                
+            </VBox>
+        </content>
+        
+        <buttons>
+            <!-- Primary action button -->
+            <Button
+                id="confirmButton"
+                text="{dialog>/confirmText}"
+                type="{
+                    path: 'dialog>/state',
+                    formatter: '.formatConfirmButtonType'
+                }"
+                enabled="{dialog>/confirmEnabled}"
+                press="onConfirmAction" />
+            
+            <!-- Secondary action button (optional) -->
+            <Button
+                text="{dialog>/secondaryText}"
+                visible="{= !!${dialog>/secondaryText} }"
+                press="onSecondaryAction" />
+            
+            <!-- Cancel button -->
+            <Button
+                text="{dialog>/cancelText}"
+                press="onCancelAction" />
+        </buttons>
+        
+    </Dialog>
+    
+</core:FragmentDefinition>

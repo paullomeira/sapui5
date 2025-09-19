@@ -1,0 +1,243 @@
+<mvc:View
+	controllerName="sapui5.template.controller.EmployeeDetail"
+	xmlns:mvc="sap.ui.core.mvc"
+	displayBlock="true"
+	xmlns="sap.m"
+	xmlns:f="sap.f"
+	xmlns:core="sap.ui.core">
+	
+	<f:DynamicPage id="dynamicPageId" headerExpanded="true" class="employeeDetailPage">
+		
+		<!-- Dynamic Page Title -->
+		<f:title>
+			<f:DynamicPageTitle>
+				<f:heading>
+					<Title text="{i18n>pageTitle.employeeDetail}" level="H1"/>
+				</f:heading>
+				<f:actions>
+					<Button 
+						text="{i18n>button.edit}" 
+						type="Emphasized" 
+						icon="sap-icon://edit"
+						press="onEditEmployee"
+						tooltip="{i18n>tooltip.edit}"/>
+					<Button 
+						text="{i18n>button.delete}" 
+						type="Transparent" 
+						icon="sap-icon://delete"
+						press="onDeleteEmployee"
+						tooltip="{i18n>tooltip.delete}"/>
+				</f:actions>
+			</f:DynamicPageTitle>
+		</f:title>
+
+		<!-- Dynamic Page Header -->
+		<f:header>
+			<f:DynamicPageHeader pinnable="true" class="employeeDetailHeader">
+				<f:content>
+					<ObjectHeader
+						id="employeeObjectHeader"
+						title="{employee>firstName} {employee>lastName}"
+						number="{
+							parts: ['employee>salary'],
+							formatter: '.formatter.formatCurrency'
+						}"
+						numberUnit="BRL"
+						backgroundDesign="Transparent"
+						responsive="true">
+						
+						<!-- Object Status indicators -->
+						<ObjectStatus 
+							text="{employee>status}" 
+							state="{
+								parts: ['employee>status'],
+								formatter: '.formatter.formatStatusState'
+							}"/>
+						
+						<!-- Object Attributes -->
+						<ObjectAttribute 
+							title="{i18n>label.email}" 
+							text="{employee>email}"/>
+						<ObjectAttribute 
+							title="{i18n>label.department}" 
+							text="{
+								parts: ['employee>department'],
+								formatter: '.formatter.formatDepartment'
+							}"/>
+						<ObjectAttribute 
+							title="{i18n>label.position}" 
+							text="{employee>position}"/>
+						<ObjectAttribute 
+							title="{i18n>label.hireDate}" 
+							text="{
+								parts: ['employee>hireDate'],
+								formatter: '.formatter.formatDate'
+							}"/>
+						
+						<!-- Header Container for additional info -->
+						<headerContainer>
+							<IconTabBar 
+								id="iconTabBar" 
+								class="sapUiResponsiveMargin"
+								expanded="true"
+								backgroundDesign="Transparent">
+								
+								<items>
+									<IconTabFilter 
+										text="{i18n>detail.contactInfo}" 
+										icon="sap-icon://phone"
+										key="contact">
+										<VBox class="sapUiMediumMargin">
+											<Label text="{i18n>label.phone}:" class="sapUiTinyMarginBottom"/>
+											<Text text="{employee>phone}" class="sapUiMediumMarginBottom"/>
+											<Label text="{i18n>label.address}:" class="sapUiTinyMarginBottom"/>
+											<Text text="{employee>address}"/>
+										</VBox>
+									</IconTabFilter>
+									
+									<IconTabFilter 
+										text="{i18n>detail.employment}" 
+										icon="sap-icon://employee"
+										key="employment">
+										<VBox class="sapUiMediumMargin">
+											<Label text="{i18n>detail.employeeId}:" class="sapUiTinyMarginBottom"/>
+											<Text text="{employee>id}" class="sapUiMediumMarginBottom"/>
+											<Label text="{i18n>label.department}:" class="sapUiTinyMarginBottom"/>
+											<Text text="{
+												parts: ['employee>department'],
+												formatter: '.formatter.formatDepartment'
+											}" class="sapUiMediumMarginBottom"/>
+											<Label text="{i18n>label.hireDate}:" class="sapUiTinyMarginBottom"/>
+											<Text text="{
+												parts: ['employee>hireDate'],
+												formatter: '.formatter.formatDate'
+											}"/>
+										</VBox>
+									</IconTabFilter>
+								</items>
+							</IconTabBar>
+						</headerContainer>
+					</ObjectHeader>
+				</f:content>
+			</f:DynamicPageHeader>
+		</f:header>
+
+		<!-- Dynamic Page Content -->
+		<f:content>
+			<VBox class="employeeDetailContent">
+				
+				<!-- Employee Details Panel -->
+				<Panel 
+					headerText="{i18n>detail.employeeInfo}" 
+					class="formSection"
+					expandable="false">
+					<content>
+						<f:SimpleForm
+							id="employeeDetailsForm"
+							editable="false"
+							layout="ResponsiveGridLayout"
+							labelSpanXL="3"
+							labelSpanL="3"
+							labelSpanM="3"
+							labelSpanS="12"
+							adjustLabelSpan="false"
+							emptySpanXL="4"
+							emptySpanL="4"
+							emptySpanM="4"
+							emptySpanS="0"
+							columnsXL="1"
+							columnsL="1"
+							columnsM="1"
+							singleContainerFullSize="false">
+							
+							<f:content>
+								<!-- Personal Information -->
+								<core:Title text="{i18n>detail.personalInfo}"/>
+								
+								<Label text="{i18n>label.firstName}"/>
+								<Text text="{employee>firstName}"/>
+								
+								<Label text="{i18n>label.lastName}"/>
+								<Text text="{employee>lastName}"/>
+								
+								<Label text="{i18n>label.email}"/>
+								<Link 
+									text="{employee>email}" 
+									href="mailto:{employee>email}"
+									target="_blank"/>
+								
+								<Label text="{i18n>label.phone}"/>
+								<Link 
+									text="{employee>phone}" 
+									href="tel:{employee>phone}"
+									target="_blank"/>
+								
+								<Label text="{i18n>label.address}"/>
+								<Text text="{employee>address}"/>
+								
+								<!-- Employment Information -->
+								<core:Title text="{i18n>detail.employmentInfo}"/>
+								
+								<Label text="{i18n>detail.employeeId}"/>
+								<Text text="{employee>id}"/>
+								
+								<Label text="{i18n>label.department}"/>
+								<Text text="{
+									parts: ['employee>department'],
+									formatter: '.formatter.formatDepartment'
+								}"/>
+								
+								<Label text="{i18n>label.position}"/>
+								<Text text="{employee>position}"/>
+								
+								<Label text="{i18n>label.hireDate}"/>
+								<Text text="{
+									parts: ['employee>hireDate'],
+									formatter: '.formatter.formatDate'
+								}"/>
+								
+								<Label text="{i18n>label.salary}"/>
+								<Text text="{
+									parts: ['employee>salary'],
+									formatter: '.formatter.formatCurrency'
+								}"/>
+								
+								<Label text="{i18n>label.status}"/>
+								<ObjectStatus 
+									text="{employee>status}" 
+									state="{
+										parts: ['employee>status'],
+										formatter: '.formatter.formatStatusState'
+									}"/>
+							</f:content>
+						</f:SimpleForm>
+					</content>
+				</Panel>
+				
+				<!-- Action Buttons Panel -->
+				<Panel class="sapUiResponsiveMargin">
+					<content>
+						<HBox class="sapUiMediumMargin" justifyContent="End">
+							<Button 
+								text="{i18n>button.back}" 
+								icon="sap-icon://nav-back"
+								press="onNavBack"
+								class="sapUiTinyMarginEnd"/>
+							<Button 
+								text="{i18n>button.edit}" 
+								type="Emphasized" 
+								icon="sap-icon://edit"
+								press="onEditEmployee"
+								class="sapUiTinyMarginEnd"/>
+							<Button 
+								text="{i18n>button.delete}" 
+								type="Reject" 
+								icon="sap-icon://delete"
+								press="onDeleteEmployee"/>
+						</HBox>
+					</content>
+				</Panel>
+			</VBox>
+		</f:content>
+	</f:DynamicPage>
+</mvc:View>

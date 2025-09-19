@@ -1,0 +1,137 @@
+<mvc:View
+	controllerName="sapui5.template.controller.EmployeeList"
+	xmlns:mvc="sap.ui.core.mvc"
+	displayBlock="true"
+	xmlns="sap.m"
+	xmlns:f="sap.f"
+	xmlns:core="sap.ui.core">
+	<f:DynamicPage id="dynamicPageId" headerExpanded="true" class="employeeListContainer">
+		<f:title>
+			<f:DynamicPageTitle>
+				<f:heading>
+					<Title text="{i18n>pageTitle.employeeList}" />
+				</f:heading>
+				<f:actions>
+					<Button
+						text="{i18n>button.add}"
+						type="Emphasized"
+						icon="sap-icon://add"
+						press="onAddEmployee" />
+				</f:actions>
+			</f:DynamicPageTitle>
+		</f:title>
+		<f:header>
+			<f:DynamicPageHeader pinnable="true" class="employeeListHeader">
+				<VBox class="customPaddingMedium">
+					<SearchField
+						id="searchField"
+						width="20rem"
+						placeholder="{i18n>placeholder.search}"
+						search="onSearch"
+						liveChange="onSearch"
+						class="employeeSearchField" />
+					<HBox class="sapUiSmallMarginTop">
+						<ComboBox
+							id="departmentFilter"
+							width="12rem"
+							placeholder="{i18n>filter.department}"
+							items="{/departments}"
+							selectionChange="onFilterChange">
+							<core:Item key="{key}" text="{text}" />
+						</ComboBox>
+						<ComboBox
+							id="statusFilter"
+							width="10rem"
+							placeholder="{i18n>filter.status}"
+							class="sapUiSmallMarginBegin"
+							selectionChange="onFilterChange">
+							<core:Item key="Ativo" text="{i18n>status.active}" />
+							<core:Item key="Inativo" text="{i18n>status.inactive}" />
+						</ComboBox>
+						<Button
+							text="{i18n>button.clearFilters}"
+							class="sapUiSmallMarginBegin"
+							press="onClearFilters" />
+					</HBox>
+				</VBox>
+			</f:DynamicPageHeader>
+		</f:header>
+		<f:content>
+			<Table
+				id="employeeTable"
+				items="{
+					path: '/employees',
+					sorter: {
+						path: 'lastName',
+						descending: false
+					}
+				}"
+				mode="MultiSelect"
+				class="employeeTable customMarginMedium"
+				width="auto"
+				growing="true"
+				growingThreshold="20">
+				<headerToolbar>
+					<Toolbar>
+						<Title text="{i18n>table.title} ({/employees/length})" level="H2" />
+						<ToolbarSpacer />
+						<Button
+							text="{i18n>button.delete}"
+							icon="sap-icon://delete"
+							type="Transparent"
+							enabled="{= ${/selectedEmployees}.length > 0}"
+							press="onDeleteSelected" />
+					</Toolbar>
+				</headerToolbar>
+				<columns>
+					<Column width="12rem">
+						<Text text="{i18n>column.name}" />
+					</Column>
+					<Column width="15rem" minScreenWidth="Tablet" demandPopin="true">
+						<Text text="{i18n>column.email}" />
+					</Column>
+					<Column width="10rem" minScreenWidth="Desktop" demandPopin="true">
+						<Text text="{i18n>column.department}" />
+					</Column>
+					<Column width="12rem" minScreenWidth="Desktop" demandPopin="true">
+						<Text text="{i18n>column.position}" />
+					</Column>
+					<Column width="8rem" minScreenWidth="Tablet" demandPopin="true">
+						<Text text="{i18n>column.status}" />
+					</Column>
+					<Column width="5rem">
+						<Text text="{i18n>column.actions}" />
+					</Column>
+				</columns>
+				<items>
+					<ColumnListItem press="onEmployeePress" type="Navigation">
+						<cells>
+							<VBox>
+								<Text text="{path: 'firstName', formatter: '.formatFullName'}" class="sapMText" />
+								<Text text="{lastName}" class="sapUiTinyMarginTop" />
+							</VBox>
+							<Text text="{email}" />
+							<Text text="{department}" />
+							<Text text="{position}" />
+							<ObjectStatus
+								text="{path: 'status', formatter: '.formatStatus'}"
+								state="{path: 'status', formatter: '.formatStatusState'}" />
+							<HBox>
+								<Button
+									icon="sap-icon://edit"
+									type="Transparent"
+									tooltip="{i18n>tooltip.edit}"
+									press="onEditEmployee" />
+								<Button
+									icon="sap-icon://delete"
+									type="Transparent"
+									tooltip="{i18n>tooltip.delete}"
+									press="onDeleteEmployee" />
+							</HBox>
+						</cells>
+					</ColumnListItem>
+				</items>
+			</Table>
+		</f:content>
+	</f:DynamicPage>
+</mvc:View>
