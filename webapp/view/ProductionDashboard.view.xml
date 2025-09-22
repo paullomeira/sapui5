@@ -9,15 +9,8 @@
         <SearchField id="searchOrders" width="100%" liveChange="onSearch" placeholder="{i18n>placeholder.searchOrders}" class="sapUiTinyMarginEnd"/>
         <ToolbarSpacer/>
         <Label text="{i18n>label.workCenter}"/>
-        <Select id="workCenterSelect" selectedKey="{prodView>/selectedWorkCenter}" change="onWorkCenterChange" width="14rem">
-          <core:Item key="ALL" text="{i18n>workCenter.all}"/>
-          <core:ListItem
-            text="{production>name}"
-            key="{production>id}"
-            additionalText="{production>plant}"
-            templateShareable="true"
-            core:require="sap/ui/core/ListItem"
-            />
+        <Select id="workCenterSelect" selectedKey="{prodView>/selectedWorkCenter}" change="onWorkCenterChange" width="14rem" items="{production>/workCenters}">
+          <core:Item key="{production>id}" text="{production>name}" additionalText="{production>plant}"/>
         </Select>
         <ToolbarSeparator/>
         <SegmentedButton selectedKey="{prodView>/sortMode}" selectionChange="onSortModeChange">
