@@ -35,6 +35,17 @@ sap.ui.define([
     },
 
     // Reconstroi lista plana de ordens/ops priorizadas
+    _buildWorkCenterOptions: function () {
+      var oProdModel = this.getView().getModel("production");
+      var aCenters = (oProdModel && oProdModel.getProperty("/workCenters")) || [];
+      var aOptions = [{ key: "ALL", text: this.getView().getModel("i18n").getResourceBundle().getText("workCenter.all") }];
+      aCenters.forEach(function (wc) {
+        aOptions.push({ key: wc.id, text: wc.name, additionalText: wc.plant });
+      });
+      this.getModel("prodView").setProperty("/workCentersOptions", aOptions);
+      this.getModel("prodView").setProperty("/selectedWorkCenter", "ALL");
+    },
+
     _rebuildFlatOrders: function () {
       var oProdModel = this.getView().getModel("production");
       var aCenters = (oProdModel && oProdModel.getProperty("/workCenters")) || [];
