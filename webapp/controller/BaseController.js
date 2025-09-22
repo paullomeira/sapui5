@@ -144,7 +144,7 @@ sap.ui.define(
        * @public
        */
       getOwnerComponent: function () {
-        return UIComponent.getRouterFor(this);
+        return Controller.prototype.getOwnerComponent.call(this);
       },
 
       /**
