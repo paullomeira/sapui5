@@ -1,0 +1,61 @@
+<mvc:View
+  controllerName="sapui5.template.controller.ProductionDashboard"
+  xmlns:mvc="sap.ui.core.mvc"
+  xmlns:core="sap.ui.core"
+  xmlns="sap.m">
+  <Page id="productionPage" title="{i18n>pageTitle.production}" showNavButton="true" navButtonPress="onNavBack" class="productionDashboardPage">
+    <subHeader>
+      <Toolbar>
+        <SearchField id="searchOrders" width="100%" liveChange="onSearch" placeholder="{i18n>placeholder.searchOrders}" class="sapUiTinyMarginEnd"/>
+        <ToolbarSpacer/>
+        <Label text="{i18n>label.workCenter}"/>
+        <Select id="workCenterSelect" selectedKey="{prodView>/selectedWorkCenter}" change="onWorkCenterChange" width="14rem">
+          <core:Item key="ALL" text="{i18n>workCenter.all}"/>
+          <core:ListItem
+            text="{production>name}"
+            key="{production>id}"
+            additionalText="{production>plant}"
+            templateShareable="true"
+            core:require="sap/ui/core/ListItem"
+            />
+        </Select>
+        <ToolbarSeparator/>
+        <SegmentedButton selectedKey="{prodView>/sortMode}" selectionChange="onSortModeChange">
+          <items>
+            <SegmentedButtonItem key="DUE" text="{i18n>sort.dueDate}"/>
+            <SegmentedButtonItem key="CRIT" text="{i18n>sort.criticality}"/>
+          </items>
+        </SegmentedButton>
+        <ToolbarSeparator/>
+        <Button icon="sap-icon://refresh" type="Transparent" press="onRefresh" tooltip="{i18n>btn.refresh}"/>
+      </Toolbar>
+    </subHeader>
+    <content>
+      <List id="ordersList"
+        items="{path: 'prodView>/ordersFlat'}"
+        headerText="{i18n>list.orders}"
+        growing="true"
+        growingScrollToLoad="true"
+        noDataText="{i18n>orders.noData}"
+        class="sapUiResponsiveMargin">
+        <ObjectListItem
+          type="Active"
+          press="onOrderPress"
+          title="{parts: [{path: 'prodView>orderId'},{path:'prodView>material'}], formatter: '.formatOrderTitle'}"
+          number="{prodView>workCenterName}"
+          numberState="Information">
+          <attributes>
+            <ObjectAttribute title="{i18n>attr.nextOperation}" text="{parts: [{path:'prodView>nextOperationId'},{path:'prodView>nextOperationDesc'}], formatter: '.formatNextOp'}"/>
+            <ObjectAttribute title="{i18n>attr.description}" text="{prodView>description}"/>
+          </attributes>
+          <firstStatus>
+            <ObjectStatus text="{parts: [{path:'prodView>dueDate'}], formatter: '.formatDueLabel'}" state="{parts:[{path:'prodView>overdue'}], formatter: '.formatDueState'}"/>
+          </firstStatus>
+          <secondStatus>
+            <ObjectStatus text="{parts:[{path:'prodView>criticality'}], formatter: '.formatCriticalityLabel'}" state="{parts:[{path:'prodView>criticality'}], formatter: '.formatCriticalityState'}"/>
+          </secondStatus>
+        </ObjectListItem>
+      </List>
+    </content>
+  </Page>
+</mvc:View>
