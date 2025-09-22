@@ -9,8 +9,8 @@
         <SearchField id="searchOrders" width="100%" liveChange="onSearch" placeholder="{i18n>placeholder.searchOrders}" class="sapUiTinyMarginEnd"/>
         <ToolbarSpacer/>
         <Label text="{i18n>label.workCenter}"/>
-        <Select id="workCenterSelect" selectedKey="{prodView>/selectedWorkCenter}" change="onWorkCenterChange" width="14rem" items="{production>/workCenters}">
-          <core:Item key="{production>id}" text="{production>name}" additionalText="{production>plant}"/>
+        <Select id="workCenterSelect" selectedKey="{prodView>/selectedWorkCenter}" change="onWorkCenterChange" width="14rem" items="{prodView>/workCentersOptions}">
+          <core:Item key="{prodView>key}" text="{prodView>text}" additionalText="{prodView>additionalText}"/>
         </Select>
         <ToolbarSeparator/>
         <SegmentedButton selectedKey="{prodView>/sortMode}" selectionChange="onSortModeChange">
