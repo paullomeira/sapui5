@@ -86,6 +86,13 @@
 								info="{i18n>tile.reports.info}"
 								press="onNavigateToReports"
 								class="sapUiTinyMargin"/>
+							<StandardTile
+								id="productionTile"
+								icon="sap-icon://factory"
+								title="{i18n>tile.production.title}"
+								info="{i18n>tile.production.info}"
+								press="onNavigateToProductionDashboard"
+								class="sapUiTinyMargin"/>
 						</TileContainer>
 					</content>
 				</Panel>
