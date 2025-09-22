@@ -93,6 +93,11 @@
           "name": "RouteEmployeeCreate",
           "pattern": "employees/create",
           "target": ["TargetEmployeeForm"]
+        },
+        {
+          "name": "RouteProductionDashboard",
+          "pattern": "production",
+          "target": ["TargetProductionDashboard"]
         }
       ],
       "targets": {
