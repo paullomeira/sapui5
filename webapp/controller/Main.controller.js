@@ -244,6 +244,13 @@ sap.ui.define(
       },
 
       /**
+       * Navega para o Painel de Monitoramento de Produção
+       */
+      onNavigateToProductionDashboard: function () {
+        this.navTo("RouteProductionDashboard");
+      },
+
+      /**
        * Chamado antes da renderização da view
        *
        * Atualiza os dados do dashboard sempre que a view é exibida,
