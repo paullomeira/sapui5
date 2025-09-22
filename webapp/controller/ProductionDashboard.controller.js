@@ -19,9 +19,13 @@ sap.ui.define([
         selectedWorkCenter: "ALL",
         searchQuery: "",
         sortMode: "DUE",
-        ordersFlat: []
+        ordersFlat: [],
+        workCentersOptions: []
       });
       this.setModel(oViewModel, "prodView");
+
+      // Opções de centro de trabalho (inclui 'Todos')
+      this._buildWorkCenterOptions();
 
       // Prepara dados iniciais
       this._rebuildFlatOrders();
