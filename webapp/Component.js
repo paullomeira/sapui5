@@ -13,7 +13,7 @@ sap.ui.define(["sap/ui/core/UIComponent", "sap/ui/Device", "./model/models"], (U
    * ser facilmente integrado em outras aplicações ou usado standalone.
    *
    * Configurações importantes:
-   * - manifest.json: Define metadados, dependências e configurações
+   * - manifest.json: Define metadados, dependências e configura��ões
    * - Router: Gerencia navegação entre views
    * - Models: Configura modelos de dados globais
    *
@@ -65,6 +65,9 @@ sap.ui.define(["sap/ui/core/UIComponent", "sap/ui/Device", "./model/models"], (U
       // que são utilizados globalmente na aplicação
       this.setModel(models.createMetadataModel(), "metadata");
 
+      // Configura o modelo de produção com ordens/centros de trabalho
+      this.setModel(models.createProductionModel(), "production");
+
       // Aplica classe CSS para densidade de conteúdo apropriada
       // Garante que a aplicação tenha a aparência correta em diferentes
       // tipos de dispositivos (touch vs. desktop)
@@ -110,7 +113,7 @@ sap.ui.define(["sap/ui/core/UIComponent", "sap/ui/Device", "./model/models"], (U
     },
 
     /**
-     * Método de limpeza chamado quando o componente é destruído
+     * Método de limpeza chamado quando o componente é destru��do
      *
      * Realiza limpeza de recursos para evitar vazamentos de memória.
      * Remove event listeners, destrói modelos e limpa referências.
