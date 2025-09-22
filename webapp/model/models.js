@@ -246,6 +246,175 @@ sap.ui.define(["sap/ui/model/json/JSONModel", "sap/ui/Device"], (JSONModel, Devi
      * @returns {sap.ui.model.json.JSONModel} Modelo de metadados
      * @public
      */
+    /**
+     * Cria modelo de produção com ordens e operações por centro de trabalho
+     *
+     * Estrutura:
+     * - workCenters: [{ id, name, plant, orders: [{ orderId, material, description, dueDate, criticality, operations: [{ operationId, description, sequence, status, workCenterId, plannedStart, plannedFinish, durationMin }] }]}]
+     *
+     * @returns {sap.ui.model.json.JSONModel} Modelo de dados de produção
+     */
+    createProductionModel: function () {
+      const oData = {
+        workCenters: [
+          {
+            id: "WC-100",
+            name: "Usinagem CNC",
+            plant: "1000",
+            orders: [
+              {
+                orderId: "MO-450001",
+                material: "MAT-AX12",
+                description: "Eixo Cardan - Lote A",
+                dueDate: "2025-09-25",
+                criticality: "High",
+                operations: [
+                  {
+                    operationId: "0100",
+                    description: "Preparação de máquina",
+                    sequence: 100,
+                    status: "Open",
+                    workCenterId: "WC-100",
+                    plannedStart: "2025-09-22T08:00:00Z",
+                    plannedFinish: "2025-09-22T08:30:00Z",
+                    durationMin: 30
+                  },
+                  {
+                    operationId: "0200",
+                    description: "Usinagem CNC",
+                    sequence: 200,
+                    status: "Open",
+                    workCenterId: "WC-100",
+                    plannedStart: "2025-09-22T08:30:00Z",
+                    plannedFinish: "2025-09-22T10:30:00Z",
+                    durationMin: 120
+                  },
+                  {
+                    operationId: "0300",
+                    description: "Inspeção dimensional",
+                    sequence: 300,
+                    status: "Open",
+                    workCenterId: "WC-100",
+                    plannedStart: "2025-09-22T10:30:00Z",
+                    plannedFinish: "2025-09-22T11:00:00Z",
+                    durationMin: 30
+                  }
+                ]
+              },
+              {
+                orderId: "MO-450002",
+                material: "MAT-PL34",
+                description: "Placa de Base - Lote C",
+                dueDate: "2025-09-24",
+                criticality: "Medium",
+                operations: [
+                  {
+                    operationId: "0100",
+                    description: "Set-up",
+                    sequence: 100,
+                    status: "Open",
+                    workCenterId: "WC-100",
+                    plannedStart: "2025-09-22T12:00:00Z",
+                    plannedFinish: "2025-09-22T12:20:00Z",
+                    durationMin: 20
+                  },
+                  {
+                    operationId: "0200",
+                    description: "Fresamento",
+                    sequence: 200,
+                    status: "Open",
+                    workCenterId: "WC-100",
+                    plannedStart: "2025-09-22T12:20:00Z",
+                    plannedFinish: "2025-09-22T14:20:00Z",
+                    durationMin: 120
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            id: "WC-200",
+            name: "Montagem Final",
+            plant: "1000",
+            orders: [
+              {
+                orderId: "MO-450010",
+                material: "KIT-MF10",
+                description: "Conjunto Motor - Série X",
+                dueDate: "2025-09-23",
+                criticality: "High",
+                operations: [
+                  {
+                    operationId: "0100",
+                    description: "Pré-montagem",
+                    sequence: 100,
+                    status: "Open",
+                    workCenterId: "WC-200",
+                    plannedStart: "2025-09-22T08:00:00Z",
+                    plannedFinish: "2025-09-22T09:00:00Z",
+                    durationMin: 60
+                  },
+                  {
+                    operationId: "0200",
+                    description: "Montagem",
+                    sequence: 200,
+                    status: "Open",
+                    workCenterId: "WC-200",
+                    plannedStart: "2025-09-22T09:00:00Z",
+                    plannedFinish: "2025-09-22T12:00:00Z",
+                    durationMin: 180
+                  },
+                  {
+                    operationId: "0300",
+                    description: "Teste funcional",
+                    sequence: 300,
+                    status: "Open",
+                    workCenterId: "WC-200",
+                    plannedStart: "2025-09-22T13:00:00Z",
+                    plannedFinish: "2025-09-22T14:00:00Z",
+                    durationMin: 60
+                  }
+                ]
+              },
+              {
+                orderId: "MO-450011",
+                material: "KIT-PA20",
+                description: "Painel de Acionamento",
+                dueDate: "2025-09-28",
+                criticality: "Low",
+                operations: [
+                  {
+                    operationId: "0100",
+                    description: "Separação de componentes",
+                    sequence: 100,
+                    status: "Open",
+                    workCenterId: "WC-200",
+                    plannedStart: "2025-09-23T08:00:00Z",
+                    plannedFinish: "2025-09-23T09:00:00Z",
+                    durationMin: 60
+                  },
+                  {
+                    operationId: "0200",
+                    description: "Montagem elétrica",
+                    sequence: 200,
+                    status: "Open",
+                    workCenterId: "WC-200",
+                    plannedStart: "2025-09-23T09:00:00Z",
+                    plannedFinish: "2025-09-23T12:00:00Z",
+                    durationMin: 180
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      };
+
+      const oModel = new JSONModel(oData);
+      oModel.setDefaultBindingMode("TwoWay");
+      return oModel;
+    },
+
     createMetadataModel: function () {
       const oData = {
         // Informações básicas da aplicação
