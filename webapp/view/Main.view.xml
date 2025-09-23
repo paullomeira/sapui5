@@ -1,0 +1,104 @@
+<mvc:View
+	controllerName="com.todoapp.controller.Main"
+	xmlns:mvc="sap.ui.core.mvc"
+	xmlns="sap.m"
+	xmlns:layout="sap.ui.layout"
+	xmlns:form="sap.ui.layout.form"
+	xmlns:core="sap.ui.core">
+	<Page title="{i18n>appTitle}" showNavButton="false">
+		<content>
+			<!-- KPIs Panel -->
+			<Panel headerText="Indicadores de Desempenho" expandable="false" expanded="true">
+				<HBox justifyContent="SpaceAround" wrap="Wrap">
+					<GenericTile id="overdueTile" header="Tarefas Atrasadas" subheader="{/kpis/overdue} tarefas" frameType="{= ${/filter} === 'overdue' ? 'TwoByOne' : (${/kpis/overdue} > 0 ? 'OneByOne' : 'Auto') }" press="onKPIPress">
+						<tileContent>
+							<TileContent>
+								<content>
+									<NumericContent value="{/kpis/overdue}" icon="sap-icon://alert" />
+								</content>
+							</TileContent>
+						</tileContent>
+					</GenericTile>
+					<GenericTile id="todayTile" header="Tarefas para Hoje" subheader="{/kpis/today} tarefas" frameType="{= ${/filter} === 'today' ? 'TwoByOne' : 'Auto' }" press="onKPIPress">
+						<tileContent>
+							<TileContent>
+								<content>
+									<NumericContent value="{/kpis/today}" icon="sap-icon://calendar" />
+								</content>
+							</TileContent>
+						</tileContent>
+					</GenericTile>
+					<GenericTile id="tomorrowTile" header="Tarefas para Amanhã" subheader="{/kpis/tomorrow} tarefas" frameType="{= ${/filter} === 'tomorrow' ? 'TwoByOne' : 'Auto' }" press="onKPIPress">
+						<tileContent>
+							<TileContent>
+								<content>
+									<NumericContent value="{/kpis/tomorrow}" icon="sap-icon://future" />
+								</content>
+							</TileContent>
+						</tileContent>
+					</GenericTile>
+				</HBox>
+			</Panel>
+
+			<!-- Add Task Form -->
+			<Panel headerText="Adicionar Nova Tarefa" expandable="true" expanded="true">
+				<form:SimpleForm editable="true" layout="ResponsiveGridLayout">
+					<form:content>
+						<Label text="{i18n>taskDescription}" />
+						<Input id="taskInput" placeholder="Ex: Preparar relatório de vendas" maxLength="200" value="{/newTask/description}" />
+						<Label text="{i18n>priority}" />
+						<Select id="prioritySelect" selectedKey="{/newTask/priority}">
+							<items>
+								<core:Item key="low" text="{i18n>low}" />
+								<core:Item key="medium" text="{i18n>medium}" />
+								<core:Item key="high" text="{i18n>high}" />
+								<core:Item key="critical" text="{i18n>critical}" />
+							</items>
+						</Select>
+						<Label text="{i18n>dueDate}" />
+						<DatePicker id="dueDatePicker" value="{/newTask/dueDate}" />
+						<Button text="{i18n>addTask}" press="onAddTask" type="Emphasized" />
+					</form:content>
+				</form:SimpleForm>
+			</Panel>
+
+			<!-- Tasks Table -->
+			<Panel expandable="false" expanded="true">
+				<headerToolbar>
+					<Toolbar>
+						<Title text="{i18n>tasks}" />
+					</Toolbar>
+				</headerToolbar>
+				<Table id="tasksTable" items="{/filteredTasks}" noDataText="Nenhuma tarefa encontrada">
+					<columns>
+						<Column>
+							<Text text="Descrição" />
+						</Column>
+						<Column>
+							<Text text="Prioridade" />
+						</Column>
+						<Column>
+							<Text text="Data de Entrega" />
+						</Column>
+						<Column>
+							<Text text="Ações" />
+						</Column>
+					</columns>
+					<items>
+						<ColumnListItem>
+							<cells>
+								<Text text="{description}" wrapping="true" class="{= ${completed} ? 'completedTask' : '' }" />
+								<ObjectStatus text="{path: 'priority', formatter: '.formatPriority'}" state="{= ${priority} === 'critical' ? 'Error' : ${priority} === 'high' ? 'Warning' : ${priority} === 'medium' ? 'Information' : 'Success' }" />
+								<Text text="{path: 'dueDate', formatter: '.formatDate'}" />
+								<HBox>
+									<Button icon="sap-icon://accept" press="onCompleteTask" tooltip="Concluir" />
+									<Button icon="sap-icon://delete" press="onDeleteTask" tooltip="Excluir" type="Reject" />
+								</HBox>
+							</cells>
+						</ColumnListItem>
+					</items>
+				</Table>
+			</Panel>
+		</content>
+	</Page>
+</mvc:View>

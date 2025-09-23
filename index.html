@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>To-Do List Ágil</title>
+	<script>
+		window.initApp = function() {
+			console.log('oninit started');
+			sap.ui.require(['sap/ui/core/Component'], function(Component) {
+				Component.create({name: 'com.todoapp'}).then(function(oComponent) {
+					oComponent.getRootControl().placeAt('content');
+				});
+			});
+		};
+	</script>
+	<link rel="stylesheet" type="text/css" href="webapp/css/style.css">
+	<script id="sap-ui-bootstrap"
+		src="https://ui5.sap.com/resources/sap-ui-core.js"
+		data-sap-ui-theme="sap_horizon"
+		data-sap-ui-resourceroots='{"com.todoapp": "./webapp"}'
+		data-sap-ui-oninit="initApp"
+		data-sap-ui-compatVersion="edge"
+		data-sap-ui-async="true"
+		data-sap-ui-frameOptions="trusted">
+	</script>
+</head>
+<body class="sapUiBody" id="content">
+</body>
+</html>
