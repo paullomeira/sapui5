@@ -1,0 +1,12 @@
+specVersion: '3.0'
+type: application
+metadata:
+  name: com.systemmonitor
+resources:
+  configuration:
+    paths:
+      webapp: webapp
+server:
+  settings:
+    httpPort: 8080
+    httpsPort: false

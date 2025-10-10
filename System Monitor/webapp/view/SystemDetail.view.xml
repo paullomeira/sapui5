@@ -1,0 +1,15 @@
+<mvc:View
+  controllerName="com.systemmonitor.controller.SystemDetail"
+  xmlns:mvc="sap.ui.core.mvc"
+  xmlns="sap.m">
+  <Page title="{name}">
+    <content>
+      <ObjectHeader title="{name}" number="{status}" numberUnit="{type}"/>
+      <Toolbar>
+        <Button text="Start" type="Accept" press="onStart"/>
+        <Button text="Stop" type="Reject" press="onStop"/>
+        <Button text="Restart" type="Emphasized" press="onRestart"/>
+      </Toolbar>
+    </content>
+  </Page>
+</mvc:View>

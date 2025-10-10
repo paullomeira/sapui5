@@ -1,0 +1,32 @@
+<mvc:View
+  controllerName="com.systemmonitor.controller.Logs"
+  xmlns:mvc="sap.ui.core.mvc"
+  xmlns="sap.m">
+  <Page title="{i18n>logsTitle}">
+    <subHeader>
+      <Toolbar>
+        <SearchField width="100%" liveChange="onSearch" placeholder="{i18n>search}"/>
+      </Toolbar>
+    </subHeader>
+    <content>
+      <Table id="logsTable" inset="false" mode="None">
+        <columns>
+          <Column><Text text="{i18n>timestamp}"/></Column>
+          <Column><Text text="{i18n>level}"/></Column>
+          <Column demandPopin="true" minScreenWidth="Tablet"><Text text="{i18n>system}"/></Column>
+          <Column width="100%"><Text text="{i18n>message}"/></Column>
+        </columns>
+        <items>
+          <ColumnListItem>
+            <cells>
+              <Text text="{timestamp}"/>
+              <ObjectStatus text="{level}" state="{= ${level}==='Error' ? 'Error' : ${level}==='Warning' ? 'Warning' : 'Success'}"/>
+              <Text text="{system}"/>
+              <Text text="{message}" maxLines="2"/>
+            </cells>
+          </ColumnListItem>
+        </items>
+      </Table>
+    </content>
+  </Page>
+</mvc:View>
