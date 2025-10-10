@@ -1,5 +1,5 @@
 <mvc:View
-  controllerName="com.systemmonitor.controller.Logs"
+  controllerName="com.sysmonitor.controller.Logs"
   xmlns:mvc="sap.ui.core.mvc"
   xmlns="sap.m">
   <Page title="{i18n>logsTitle}">

@@ -1,11 +1,11 @@
 sap.ui.define([
   "sap/ui/core/mvc/Controller",
   "sap/m/MessageToast",
-  "com.systemmonitor/model/supabase"
+  "com.sysmonitor/model/supabase"
 ], function (Controller, MessageToast, Supabase) {
   "use strict";
 
-  return Controller.extend("com.systemmonitor.controller.SystemDetail", {
+  return Controller.extend("com.sysmonitor.controller.SystemDetail", {
     onInit: function () {
       var oRouter = this.getOwnerComponent().getRouter();
       oRouter.getRoute("system").attachPatternMatched(this._onRouteMatched, this);

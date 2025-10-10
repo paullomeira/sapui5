@@ -1,11 +1,11 @@
 sap.ui.define([
   "sap/ui/core/mvc/Controller",
   "sap/ui/model/json/JSONModel",
-  "com.systemmonitor/model/supabase"
+  "com.sysmonitor/model/supabase"
 ], function (Controller, JSONModel, Supabase) {
   "use strict";
 
-  return Controller.extend("com.systemmonitor.controller.Overview", {
+  return Controller.extend("com.sysmonitor.controller.Overview", {
     onInit: function () {
       this._loadSystems();
     },

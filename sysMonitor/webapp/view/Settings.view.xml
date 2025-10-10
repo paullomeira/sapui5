@@ -1,5 +1,5 @@
 <mvc:View
-  controllerName="com.systemmonitor.controller.Settings"
+  controllerName="com.sysmonitor.controller.Settings"
   xmlns:mvc="sap.ui.core.mvc"
   xmlns="sap.m">
   <Page title="{i18n>settings}">

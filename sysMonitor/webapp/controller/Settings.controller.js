@@ -3,5 +3,5 @@ sap.ui.define([
 ], function (Controller) {
   "use strict";
 
-  return Controller.extend("com.systemmonitor.controller.Settings", {});
+  return Controller.extend("com.sysmonitor.controller.Settings", {});
 });

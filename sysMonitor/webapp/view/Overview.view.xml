@@ -1,5 +1,5 @@
 <mvc:View
-  controllerName="com.systemmonitor.controller.Overview"
+  controllerName="com.sysmonitor.controller.Overview"
   xmlns:mvc="sap.ui.core.mvc"
   xmlns:l="sap.ui.layout"
   xmlns="sap.m">

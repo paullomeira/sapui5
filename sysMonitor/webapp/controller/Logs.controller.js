@@ -2,11 +2,11 @@ sap.ui.define([
   "sap/ui/core/mvc/Controller",
   "sap/ui/model/Filter",
   "sap/ui/model/FilterOperator",
-  "com.systemmonitor/model/supabase"
+  "com.sysmonitor/model/supabase"
 ], function (Controller, Filter, FilterOperator, Supabase) {
   "use strict";
 
-  return Controller.extend("com.systemmonitor.controller.Logs", {
+  return Controller.extend("com.sysmonitor.controller.Logs", {
     onInit: function () {
       this._loadLogs();
     },
