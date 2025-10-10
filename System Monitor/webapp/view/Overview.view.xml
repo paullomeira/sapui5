@@ -1,0 +1,22 @@
+<mvc:View
+  controllerName="com.systemmonitor.controller.Overview"
+  xmlns:mvc="sap.ui.core.mvc"
+  xmlns:l="sap.ui.layout"
+  xmlns="sap.m">
+  <Page title="{i18n>overviewTitle}">
+    <content>
+      <VBox class="sapUiSmallMargin">
+        <List id="systemsList" headerText="{i18n>systems}">
+          <items>
+            <StandardListItem title="{name}" description="{type}" info="{status}" type="Active" press="onSystemPress" />
+          </items>
+        </List>
+        <Toolbar>
+          <ToolbarSpacer/>
+          <Button text="{i18n>viewLogs}" press="onNavLogs"/>
+          <Button text="{i18n>settings}" press="onNavSettings}"/>
+        </Toolbar>
+      </VBox>
+    </content>
+  </Page>
+</mvc:View>

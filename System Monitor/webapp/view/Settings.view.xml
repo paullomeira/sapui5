@@ -1,0 +1,11 @@
+<mvc:View
+  controllerName="com.systemmonitor.controller.Settings"
+  xmlns:mvc="sap.ui.core.mvc"
+  xmlns="sap.m">
+  <Page title="{i18n>settings}">
+    <content>
+      <MessageStrip text="{i18n>supabaseStatus}: {= ${/supabaseConnected} ? 'Conectado' : 'Não configurado'}" type="Information" showIcon="true"/>
+      <Text text="Defina SUPABASE_URL e SUPABASE_ANON_KEY via ambiente/host."/>
+    </content>
+  </Page>
+</mvc:View>

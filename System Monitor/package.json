@@ -1,0 +1,14 @@
+{
+  "name": "system-monitor",
+  "private": true,
+  "version": "1.0.0",
+  "author": "Paulo Meira de Melo",
+  "description": "SAP UI5 System Monitor (logs, status, commands)",
+  "scripts": {
+    "start": "ui5 serve",
+    "build": "ui5 build --all --clean-dest"
+  },
+  "devDependencies": {
+    "@ui5/cli": "^4"
+  }
+}
